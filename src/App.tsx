@@ -99,6 +99,7 @@ const ASSETS: Asset[] = [
     type: 'PPT',
     tags: ['Airlines', 'Renewals', 'Negotiation'],
     description: 'Internal playbook for airline contract renewals.',
+    imageUrl: 'https://i.postimg.cc/RqRrSY5z/ARthumb.png',
     link: 'https://drive.google.com/file/d/1ln32N3rnHsy2N3HKv3H7jGtE8AvQ05PS/view',
   },
   {
@@ -109,6 +110,7 @@ const ASSETS: Asset[] = [
     tags: ['Cargo', 'Sales', 'Playbook', 'Commercial', 'Process'],
     description:
       'End-to-end cargo sales playbook covering sales approach, engagement flow, and commercial best practices.',
+    imageUrl: 'https://i.postimg.cc/qgLfJFVT/CSThumb.png',
     link: 'https://drive.google.com/file/d/1aLSFYmvtTEVvuL8J4epBdQI3tR1e5gQM/view',
   },
 
@@ -243,41 +245,64 @@ export default function App() {
               </div>
             )}
 
-            {/* ===== DEFAULT LIST VIEW FOR OTHER CATEGORIES ===== */}
-            {activeCategory !== 'Marketing Collaterals' && (
-              <>
+            {/* ===== PLAYBOOK GRID ===== */}
+            {activeCategory === 'Playbooks' && (
+              <div className="playbookGrid">
                 {results.map((a) => (
                   <div
                     key={a.id}
-                    className={`result ${
-                      a.imageUrl || a.link ? 'clickable' : ''
-                    }`}
-                    onClick={() => {
-                      if (a.imageUrl) {
-                        setSelected(a);
-                      } else if (a.link) {
-                        window.open(a.link, '_blank', 'noopener,noreferrer');
-                      }
-                    }}
+                    className="playbookCard"
+                    onClick={() =>
+                      a.link &&
+                      window.open(a.link, '_blank', 'noopener,noreferrer')
+                    }
                   >
-                    <strong>{a.title}</strong>
-
-                    <div className="chips">
-                      <span className="chip">{a.category}</span>
-                      <span className="chip">{a.type}</span>
-                    </div>
-
-                    <p>{a.description}</p>
+                    {a.imageUrl && (
+                      <img src={a.imageUrl} className="playbookThumb" />
+                    )}
+                    <div className="playbookTitle">{a.title}</div>
+                    <div className="playbookMeta">PDF · Playbook</div>
                   </div>
                 ))}
-
-                {results.length === 0 && (
-                  <p className="empty">
-                    No matching assets. Try broader terms or switch category.
-                  </p>
-                )}
-              </>
+              </div>
             )}
+
+            {/* ===== DEFAULT LIST VIEW FOR OTHER CATEGORIES ===== */}
+            {activeCategory !== 'Marketing Collaterals' &&
+              activeCategory !== 'Playbooks' && (
+                <>
+                  {results.map((a) => (
+                    <div
+                      key={a.id}
+                      className={`result ${
+                        a.imageUrl || a.link ? 'clickable' : ''
+                      }`}
+                      onClick={() => {
+                        if (a.imageUrl) {
+                          setSelected(a);
+                        } else if (a.link) {
+                          window.open(a.link, '_blank', 'noopener,noreferrer');
+                        }
+                      }}
+                    >
+                      <strong>{a.title}</strong>
+
+                      <div className="chips">
+                        <span className="chip">{a.category}</span>
+                        <span className="chip">{a.type}</span>
+                      </div>
+
+                      <p>{a.description}</p>
+                    </div>
+                  ))}
+
+                  {results.length === 0 && (
+                    <p className="empty">
+                      No matching assets. Try broader terms or switch category.
+                    </p>
+                  )}
+                </>
+              )}
           </section>
         )}
 
