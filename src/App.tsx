@@ -16,6 +16,7 @@ type Asset = {
   tags: string[];
   description: string;
   imageUrl?: string;
+  link?: string;
 };
 
 const LOGO_URL =
@@ -98,6 +99,16 @@ const ASSETS: Asset[] = [
     type: 'PPT',
     tags: ['Airlines', 'Renewals', 'Negotiation'],
     description: 'Internal playbook for airline contract renewals.',
+  },
+  {
+    id: 'playbook-cargo-sales',
+    title: 'Cargo Sales Playbook',
+    category: 'Playbooks',
+    type: 'PDF',
+    tags: ['Cargo', 'Sales', 'Playbook', 'Commercial', 'Process'],
+    description:
+      'End-to-end cargo sales playbook covering sales approach, engagement flow, and commercial best practices.',
+    link: 'https://drive.google.com/file/d/1aLSFYmvtTEVvuL8J4epBdQI3tR1e5gQM/view',
   },
 
   // ===== CASE STUDIES =====
@@ -237,8 +248,16 @@ export default function App() {
                 {results.map((a) => (
                   <div
                     key={a.id}
-                    className={`result ${a.imageUrl ? 'clickable' : ''}`}
-                    onClick={() => a.imageUrl && setSelected(a)}
+                    className={`result ${
+                      a.imageUrl || a.link ? 'clickable' : ''
+                    }`}
+                    onClick={() => {
+                      if (a.imageUrl) {
+                        setSelected(a);
+                      } else if (a.link) {
+                        window.open(a.link, '_blank', 'noopener,noreferrer');
+                      }
+                    }}
                   >
                     <strong>{a.title}</strong>
 
