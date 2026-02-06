@@ -269,23 +269,34 @@ export default function App() {
 
             {/* ===== DEFAULT LIST VIEW FOR OTHER CATEGORIES ===== */}
             {activeCategory !== 'Marketing Collaterals' &&
-              activeCategory !== 'Playbooks' && (
-                <>
-                  {results.map((a) => (
-                    <div
-                      key={a.id}
-                      className={`result ${
-                        a.imageUrl || a.link ? 'clickable' : ''
-                      }`}
-                      onClick={() => {
-                        if (a.imageUrl) {
-                          setSelected(a);
-                        } else if (a.link) {
-                          window.open(a.link, '_blank', 'noopener,noreferrer');
-                        }
-                      }}
-                    >
-                      <strong>{a.title}</strong>
+              activeCategory !== 'Playbooks' &&
+              results.map((a) => (
+                <div
+                  key={a.id}
+                  className={`result ${
+                    a.imageUrl || a.link ? 'clickable' : ''
+                  }`}
+                  onClick={() => {
+                    if (a.imageUrl) {
+                      setSelected(a);
+                    } else if (a.link) {
+                      window.open(a.link, '_blank', 'noopener,noreferrer');
+                    }
+                  }}
+                >
+                  <div className="resultRow">
+                    {/* Thumbnail */}
+                    {a.imageUrl && (
+                      <img
+                        src={a.imageUrl}
+                        alt={a.title}
+                        className="resultThumb"
+                      />
+                    )}
+
+                    {/* Content */}
+                    <div className="resultContent">
+                      <div className="resultTitle">{a.title}</div>
 
                       <div className="chips">
                         <span className="chip">{a.category}</span>
@@ -294,15 +305,9 @@ export default function App() {
 
                       <p>{a.description}</p>
                     </div>
-                  ))}
-
-                  {results.length === 0 && (
-                    <p className="empty">
-                      No matching assets. Try broader terms or switch category.
-                    </p>
-                  )}
-                </>
-              )}
+                  </div>
+                </div>
+              ))}
           </section>
         )}
 
