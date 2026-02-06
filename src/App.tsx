@@ -99,7 +99,7 @@ const ASSETS: Asset[] = [
     type: 'PPT',
     tags: ['Airlines', 'Renewals', 'Negotiation'],
     description: 'Internal playbook for airline contract renewals.',
-    imageUrl: 'https://i.postimg.cc/RqRrSY5z/ARthumb.png',
+    imageUrl: 'https://i.postimg.cc/D8PzK65f/ARthumb2.png',
     link: 'https://drive.google.com/file/d/1ln32N3rnHsy2N3HKv3H7jGtE8AvQ05PS/view',
   },
   {
@@ -110,7 +110,7 @@ const ASSETS: Asset[] = [
     tags: ['Cargo', 'Sales', 'Playbook', 'Commercial', 'Process'],
     description:
       'End-to-end cargo sales playbook covering sales approach, engagement flow, and commercial best practices.',
-    imageUrl: 'https://i.postimg.cc/qgLfJFVT/CSThumb.png',
+    imageUrl: 'https://i.postimg.cc/N5c0VS8r/CSThumb2.png',
     link: 'https://drive.google.com/file/d/1aLSFYmvtTEVvuL8J4epBdQI3tR1e5gQM/view',
   },
 
