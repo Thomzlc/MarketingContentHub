@@ -99,6 +99,7 @@ const ASSETS: Asset[] = [
     type: 'PPT',
     tags: ['Airlines', 'Renewals', 'Negotiation'],
     description: 'Internal playbook for airline contract renewals.',
+    link: 'https://drive.google.com/file/d/1ln32N3rnHsy2N3HKv3H7jGtE8AvQ05PS/view',
   },
   {
     id: 'playbook-cargo-sales',
